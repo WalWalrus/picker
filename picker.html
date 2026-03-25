@@ -234,9 +234,97 @@ button.disabled:hover {
 'use strict';
 
 var items = [
+
+    // SERIES 1
     { id: 's1e1_Rose', name: 'Rose', image: 'images/Rose.png' },
     { id: 's1e2_EndOfTheWorld', name: 'The End of the World', image: 'images/EndOfTheWorld.png' },
-    { id: 's1e3_UnquietDead', name: 'The Unquiet Dead', image: 'images/UnquietDead.png' }
+    { id: 's1e3_UnquietDead', name: 'The Unquiet Dead', image: 'images/UnquietDead.png' },
+    { id: 's1e4_AliensOfLondon', name: 'Aliens of London', image: 'images/AliensOfLondon.png' },
+    { id: 's1e5_WorldWarThree', name: 'World War Three', image: 'images/WorldWarThree.png' },
+    { id: 's1e6_Dalek', name: 'Dalek', image: 'images/Dalek.png' },
+    { id: 's1e7_LongGame', name: 'The Long Game', image: 'images/LongGame.png' },
+    { id: 's1e8_FathersDay', name: "Father's Day", image: 'images/FathersDay.png' },
+    { id: 's1e9_EmptyChild', name: 'The Empty Child', image: 'images/EmptyChild.png' },
+    { id: 's1e10_DoctorDances', name: 'The Doctor Dances', image: 'images/DoctorDances.png' },
+    { id: 's1e11_BoomTown', name: 'Boom Town', image: 'images/BoomTown.png' },
+    { id: 's1e12_BadWolf', name: 'Bad Wolf', image: 'images/BadWolf.png' },
+    { id: 's1e13_PartingOfTheWays', name: 'The Parting of the Ways', image: 'images/PartingOfTheWays.png' },
+
+    // SPECIALS 2005–2006
+    { id: 'specials_ChristmasInvasion', name: 'The Christmas Invasion', image: 'images/ChristmasInvasion.png' },
+
+    // SERIES 2
+    { id: 's2e1_NewEarth', name: 'New Earth', image: 'images/NewEarth.png' },
+    { id: 's2e2_ToothAndClaw', name: 'Tooth and Claw', image: 'images/ToothAndClaw.png' },
+    { id: 's2e3_SchoolReunion', name: 'School Reunion', image: 'images/SchoolReunion.png' },
+    { id: 's2e4_GirlInTheFireplace', name: 'The Girl in the Fireplace', image: 'images/GirlInTheFireplace.png' },
+    { id: 's2e5_RiseOfTheCybermen', name: 'Rise of the Cybermen', image: 'images/RiseOfTheCybermen.png' },
+    { id: 's2e6_AgeOfSteel', name: 'The Age of Steel', image: 'images/AgeOfSteel.png' },
+    { id: 's2e7_IdiotsLantern', name: "The Idiot's Lantern", image: 'images/IdiotsLantern.png' },
+    { id: 's2e8_ImpossiblePlanet', name: 'The Impossible Planet', image: 'images/ImpossiblePlanet.png' },
+    { id: 's2e9_SatanPit', name: 'The Satan Pit', image: 'images/SatanPit.png' },
+    { id: 's2e10_LoveAndMonsters', name: 'Love & Monsters', image: 'images/LoveAndMonsters.png' },
+    { id: 's2e11_FearHer', name: 'Fear Her', image: 'images/FearHer.png' },
+    { id: 's2e12_ArmyOfGhosts', name: 'Army of Ghosts', image: 'images/ArmyOfGhosts.png' },
+    { id: 's2e13_Doomsday', name: 'Doomsday', image: 'images/Doomsday.png' },
+
+    // SPECIAL
+    { id: 'specials_RunawayBride', name: 'The Runaway Bride', image: 'images/RunawayBride.png' },
+
+    // SERIES 3
+    { id: 's3e1_SmithAndJones', name: 'Smith and Jones', image: 'images/SmithAndJones.png' },
+    { id: 's3e2_ShakespeareCode', name: 'The Shakespeare Code', image: 'images/ShakespeareCode.png' },
+    { id: 's3e3_Gridlock', name: 'Gridlock', image: 'images/Gridlock.png' },
+    { id: 's3e4_DaleksInManhattan', name: 'Daleks in Manhattan', image: 'images/DaleksInManhattan.png' },
+    { id: 's3e5_EvolutionOfTheDaleks', name: 'Evolution of the Daleks', image: 'images/EvolutionOfTheDaleks.png' },
+    { id: 's3e6_LazarusExperiment', name: 'The Lazarus Experiment', image: 'images/LazarusExperiment.png' },
+    { id: 's3e7_42', name: '42', image: 'images/42.png' },
+    { id: 's3e8_HumanNature', name: 'Human Nature', image: 'images/HumanNature.png' },
+    { id: 's3e9_FamilyOfBlood', name: 'The Family of Blood', image: 'images/FamilyOfBlood.png' },
+    { id: 's3e10_Blink', name: 'Blink', image: 'images/Blink.png' },
+    { id: 's3e11_Utopia', name: 'Utopia', image: 'images/Utopia.png' },
+    { id: 's3e12_SoundOfDrums', name: 'The Sound of Drums', image: 'images/SoundOfDrums.png' },
+    { id: 's3e13_LastOfTheTimeLords', name: 'Last of the Time Lords', image: 'images/LastOfTheTimeLords.png' },
+
+    // SPECIALS 2007–2010
+    { id: 'specials_VoyageOfTheDamned', name: 'Voyage of the Damned', image: 'images/VoyageOfTheDamned.png' },
+    { id: 'specials_PlanetOfTheDead', name: 'Planet of the Dead', image: 'images/PlanetOfTheDead.png' },
+    { id: 'specials_WatersOfMars', name: 'The Waters of Mars', image: 'images/WatersOfMars.png' },
+    { id: 'specials_EndOfTimePart1', name: 'The End of Time Part 1', image: 'images/EndOfTimePart1.png' },
+    { id: 'specials_EndOfTimePart2', name: 'The End of Time Part 2', image: 'images/EndOfTimePart2.png' },
+
+    // SERIES 5
+    { id: 's5e1_EleventhHour', name: 'The Eleventh Hour', image: 'images/EleventhHour.png' },
+    { id: 's5e2_BeastBelow', name: 'The Beast Below', image: 'images/BeastBelow.png' },
+    { id: 's5e3_VictoryOfTheDaleks', name: 'Victory of the Daleks', image: 'images/VictoryOfTheDaleks.png' },
+    { id: 's5e4_TimeOfAngels', name: 'The Time of Angels', image: 'images/TimeOfAngels.png' },
+    { id: 's5e5_FleshAndStone', name: 'Flesh and Stone', image: 'images/FleshAndStone.png' },
+    { id: 's5e6_VampiresOfVenice', name: 'The Vampires of Venice', image: 'images/VampiresOfVenice.png' },
+    { id: 's5e7_AmysChoice', name: "Amy's Choice", image: 'images/AmysChoice.png' },
+    { id: 's5e8_HungryEarth', name: 'The Hungry Earth', image: 'images/HungryEarth.png' },
+    { id: 's5e9_ColdBlood', name: 'Cold Blood', image: 'images/ColdBlood.png' },
+    { id: 's5e10_VincentAndTheDoctor', name: 'Vincent and the Doctor', image: 'images/VincentAndTheDoctor.png' },
+    { id: 's5e11_Lodger', name: 'The Lodger', image: 'images/Lodger.png' },
+    { id: 's5e12_PandoricaOpens', name: 'The Pandorica Opens', image: 'images/PandoricaOpens.png' },
+    { id: 's5e13_BigBang', name: 'The Big Bang', image: 'images/BigBang.png' },
+
+    // SPECIAL
+    { id: 'specials_AChristmasCarol', name: 'A Christmas Carol', image: 'images/AChristmasCarol.png' },
+
+    // SERIES 6
+    { id: 's6e1_ImpossibleAstronaut', name: 'The Impossible Astronaut', image: 'images/ImpossibleAstronaut.png' },
+    { id: 's6e2_DayOfTheMoon', name: 'Day of the Moon', image: 'images/DayOfTheMoon.png' },
+    { id: 's6e3_BlackSpot', name: 'The Curse of the Black Spot', image: 'images/BlackSpot.png' },
+    { id: 's6e4_DoctorsWife', name: "The Doctor's Wife", image: 'images/DoctorsWife.png' },
+    { id: 's6e5_RebelFlesh', name: 'The Rebel Flesh', image: 'images/RebelFlesh.png' },
+    { id: 's6e6_AlmostPeople', name: 'The Almost People', image: 'images/AlmostPeople.png' },
+    { id: 's6e7_GoodManGoesToWar', name: 'A Good Man Goes to War', image: 'images/GoodManGoesToWar.png' },
+    { id: 's6e8_LetsKillHitler', name: "Let's Kill Hitler", image: 'images/LetsKillHitler.png' },
+    { id: 's6e9_NightTerrors', name: 'Night Terrors', image: 'images/NightTerrors.png' },
+    { id: 's6e10_GirlWhoWaited', name: 'The Girl Who Waited', image: 'images/GirlWhoWaited.png' },
+    { id: 's6e11_GodComplex', name: 'The God Complex', image: 'images/GodComplex.png' },
+    { id: 's6e12_ClosingTime', name: 'Closing Time', image: 'images/ClosingTime.png' },
+    { id: 's6e13_WeddingOfRiverSong', name: 'The Wedding of River Song', image: 'images/WeddingOfRiverSong.png' }
 ];
 
 var myPicker = new picker.Picker({
