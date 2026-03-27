@@ -327,6 +327,13 @@ body.dark #progress-bar {
     box-sizing: border-box;
 }
 
+#options label {
+    white-space: nowrap;
+    display: inline-block;
+    margin-right: 0.35rem;
+    margin-bottom: 0.35rem;
+}
+
 @media (max-width: 656px) {
     .item-list {
         line-height: 75px;
@@ -448,8 +455,15 @@ body.dark #progress-bar {
             </p>
             
             <p>
-                <label><input type="checkbox" id="include-specials" checked> Include specials</label>
-                <span class="help-text">If unchecked, specials will be excluded.</span>
+                Include specials:
+                <label>(<input type="checkbox" id="special-groups-all" class="select-all" value="specialGroups" checked> Select all)</label>
+                <label><input type="checkbox" class="special-groups" value="christmas" checked> Christmas</label>,
+                <label><input type="checkbox" class="special-groups" value="nyd" checked> New Year</label>,
+                <label><input type="checkbox" class="special-groups" value="2008-10" checked> 2008–10 Specials</label>,
+                <label><input type="checkbox" class="special-groups" value="anniversary" checked> 50th Anniversary</label>,
+                <label><input type="checkbox" class="special-groups" value="2022" checked> 2022 Specials</label>,
+                <label><input type="checkbox" class="special-groups" value="2023" checked> 2023 Specials</label>
+                <span class="help-text">Season-linked specials can appear via their season or their special category.</span>
             </p>
             
             <p>
@@ -533,6 +547,22 @@ var items = [
     { id: 'specials_WatersOfMars', name: 'The Waters of Mars', image: 'images/WatersOfMars.png', season: null, specialGroup: '2008-10' },
     { id: 'specials_EndOfTimePart1', name: 'The End of Time Part 1', image: 'images/EndOfTimePart1.png', season: null, specialGroup: '2008-10' },
     { id: 'specials_EndOfTimePart2', name: 'The End of Time Part 2', image: 'images/EndOfTimePart2.png', season: null, specialGroup: '2008-10' },
+
+    { id: 's5e1_EleventhHour', name: 'The Eleventh Hour', image: 'images/EleventhHour.png', season: 5, specialGroup: null },
+    { id: 's5e2_BeastBelow', name: 'The Beast Below', image: 'images/BeastBelow.png', season: 5, specialGroup: null },
+    { id: 's5e3_VictoryOfTheDaleks', name: 'Victory of the Daleks', image: 'images/VictoryOfTheDaleks.png', season: 5, specialGroup: null },
+    { id: 's5e4_TimeOfAngels', name: 'The Time of Angels', image: 'images/TimeOfAngels.png', season: 5, specialGroup: null },
+    { id: 's5e5_FleshAndStone', name: 'Flesh and Stone', image: 'images/FleshAndStone.png', season: 5, specialGroup: null },
+    { id: 's5e6_VampiresOfVenice', name: 'The Vampires of Venice', image: 'images/VampiresOfVenice.png', season: 5, specialGroup: null },
+    { id: 's5e7_AmysChoice', name: "Amy's Choice", image: 'images/AmysChoice.png', season: 5, specialGroup: null },
+    { id: 's5e8_HungryEarth', name: 'The Hungry Earth', image: 'images/HungryEarth.png', season: 5, specialGroup: null },
+    { id: 's5e9_ColdBlood', name: 'Cold Blood', image: 'images/ColdBlood.png', season: 5, specialGroup: null },
+    { id: 's5e10_VincentAndTheDoctor', name: 'Vincent and the Doctor', image: 'images/VincentAndTheDoctor.png', season: 5, specialGroup: null },
+    { id: 's5e11_Lodger', name: 'The Lodger', image: 'images/Lodger.png', season: 5, specialGroup: null },
+    { id: 's5e12_PandoricaOpens', name: 'The Pandorica Opens', image: 'images/PandoricaOpens.png', season: 5, specialGroup: null },
+    { id: 's5e13_BigBang', name: 'The Big Bang', image: 'images/BigBang.png', season: 5, specialGroup: null },
+
+    { id: 'specials_AChristmasCarol', name: 'A Christmas Carol', image: 'images/AChristmasCarol.png', season: 6, specialGroup: 'christmas' },
     
     { id: 's6e1_ImpossibleAstronaut', name: 'The Impossible Astronaut', image: 'images/ImpossibleAstronaut.png', season: 6, specialGroup: null },
     { id: 's6e2_DayOfTheMoon', name: 'Day of the Moon', image: 'images/DayOfTheMoon.png', season: 6, specialGroup: null },
@@ -548,7 +578,7 @@ var items = [
     { id: 's6e12_ClosingTime', name: 'Closing Time', image: 'images/ClosingTime.png', season: 6, specialGroup: null },
     { id: 's6e13_WeddingOfRiverSong', name: 'The Wedding of River Song', image: 'images/WeddingOfRiverSong.png', season: 6, specialGroup: null },
     
-    { id: 'specials_DoctorWidowWardrobe', name: 'The Doctor, the Widow and the Wardrobe', image: 'images/DoctorWidowWardrobe.png', season: null, specialGroup: 'christmas' },
+    { id: 'specials_DoctorWidowWardrobe', name: 'The Doctor, the Widow and the Wardrobe', image: 'images/DoctorWidowWardrobe.png', season: 7, specialGroup: 'christmas' },
     
     { id: 's7e1_AsylumOfTheDaleks', name: 'Asylum of the Daleks', image: 'images/AsylumOfTheDaleks.png', season: 7, specialGroup: null },
     { id: 's7e2_DinosaursOnASpaceship', name: 'Dinosaurs on a Spaceship', image: 'images/DinosaursOnASpaceship.png', season: 7, specialGroup: null },
@@ -567,7 +597,7 @@ var items = [
     { id: 's7e12_NightmareInSilver', name: 'Nightmare in Silver', image: 'images/NightmareInSilver.png', season: 7, specialGroup: null },
     { id: 's7e13_NameOfTheDoctor', name: 'The Name of the Doctor', image: 'images/NameOfTheDoctor.png', season: 7, specialGroup: null },
     
-    { id: 'specials_DayOfTheDoctor', name: 'The Day of the Doctor', image: 'images/DayOfTheDoctor.png', season: '50th Anniversary', specialGroup: 'anniversary' },
+    { id: 'specials_DayOfTheDoctor', name: 'The Day of the Doctor', image: 'images/DayOfTheDoctor.png', season: null, specialGroup: 'anniversary' },
     { id: 'specials_TimeOfTheDoctor', name: 'The Time of the Doctor', image: 'images/TimeOfTheDoctor.png', season: 7, specialGroup: 'christmas' },
     
     { id: 's8e1_DeepBreath', name: 'Deep Breath', image: 'images/DeepBreath.png', season: 8, specialGroup: null },
@@ -680,25 +710,30 @@ var items = [
 ];
     
 var allSeasons = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+var allSpecialGroups = ["christmas", "nyd", "2008-10", "anniversary", "2022", "2023"];
 
+var specialGroupLabels = {
+    christmas: "Christmas",
+    nyd: "New Year",
+    "2008-10": "2008–10 Specials",
+    anniversary: "50th Anniversary",
+    "2022": "2022 Specials",
+    "2023": "2023 Specials"
+};
+    
 var myPicker = new picker.Picker({
     items: items,
     localStorageKey: "doctor-who-picker-state",
     defaultSettings: {
         maxBatchSize: 20,
         seasons: allSeasons,
-        includeSpecials: true
+        specialGroups: allSpecialGroups
     },
     shouldIncludeItem: function(item, settings) {
-        if (!settings.includeSpecials && item.specialGroup) {
-            return false;
-        }
+        var seasonMatch = item.season !== null && settings.seasons.indexOf(item.season) !== -1;
+        var specialMatch = item.specialGroup !== null && settings.specialGroups.indexOf(item.specialGroup) !== -1;
 
-        if (!item.specialGroup && settings.seasons.indexOf(item.season) === -1) {
-            return false;
-        }
-
-        return true;
+        return seasonMatch || specialMatch;
     }
 });
 
@@ -707,7 +742,7 @@ var pickerUI = new PickerUI(myPicker, {
         settings: {
             maxBatchSize: "#max-batch-size",
             seasons: ".seasons",
-            includeSpecials: "#include-specials"
+            specialGroups: ".special-groups"
         },
         pick: "#pick",
         pass: "#pass",
@@ -742,32 +777,30 @@ pickerUI.initialize();
 
 function setSelectAll(setting) {
     var value = pickerUI.getSetting(setting);
-    var fullList = {
-        seasons: allSeasons
+    var fullListMap = {
+        seasons: allSeasons,
+        specialGroups: allSpecialGroups
     };
 
     var $selectAll = $('.select-all[value="' + setting + '"]');
-
-    if (value.length === fullList[setting].length) {
-        $selectAll.prop("checked", true);
-    } else {
-        $selectAll.prop("checked", false);
-    }
+    $selectAll.prop("checked", value.length === fullListMap[setting].length);
 }
 
 $(".select-all").on("change", function() {
     var setting = $(this).val();
+    var fullListMap = {
+        seasons: allSeasons,
+        specialGroups: allSpecialGroups
+    };
 
-    if (setting === "seasons") {
-        pickerUI.setSetting("seasons", $(this).prop("checked") ? allSeasons : []);
-    }
-
+    pickerUI.setSetting(setting, $(this).prop("checked") ? fullListMap[setting] : []);
     myPicker.setSettings(pickerUI.getSettings());
     pickerUI.update(true, "setting");
 });
 
-$(".seasons").on("change", function() {
+$(".seasons, .special-groups").on("change", function() {
     setSelectAll("seasons");
+    setSelectAll("specialGroups");
 });
 
 var sortable = new Sortable(pickerUI.elem.favorites.get(0), {
