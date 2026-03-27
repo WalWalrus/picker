@@ -209,11 +209,16 @@ body.dark .tabs li.active {
     padding: 3px;
     background: #eee;
     border-radius: 100%;
+    box-sizing: border-box;
+    color: inherit;
 }
 
-body.dark .itemlist li,
+body.dark .item-list li {
+    color: #fff;
+}
+
 body.dark .item-list li span {
-    background: #2a2a2a;
+    background: #2f537d;
     color: #fff;
 }
 
@@ -239,7 +244,7 @@ body.dark .item-list li span {
 }
 
 body.dark .item-list li:hover span {
-    background: #355070;
+    background: #3d689c;
 }
 
 .item-list.sorting li:hover span {
@@ -247,7 +252,7 @@ body.dark .item-list li:hover span {
 }
 
 body.dark .item-list.sorting li:hover span {
-    background: #2a2a2a;
+    background: #2f537d;
 }
 
 #evaluating li.selected span {
