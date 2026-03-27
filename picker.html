@@ -334,9 +334,21 @@ body.dark #progress-bar {
 
 #options label {
     white-space: nowrap;
-    display: inline-block;
-    margin-right: 0.35rem;
-    margin-bottom: 0.35rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin: 0;
+}
+
+.option-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+    margin-top: 0.35rem;
+}
+
+.item-list li span {
+    transition: background-color 0.15s ease, border-color 0.15s ease, padding 0.15s ease;
 }
 
 @media (max-width: 656px) {
@@ -440,34 +452,38 @@ body.dark #progress-bar {
             
             <p>
                 Include seasons:
-                <label>(<input type="checkbox" id="seasons-all" class="select-all" value="seasons" checked> Select all)</label>
-                <label><input type="checkbox" class="seasons setting-number" value="1" checked> 1</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="2" checked> 2</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="3" checked> 3</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="4" checked> 4</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="5" checked> 5</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="6" checked> 6</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="7" checked> 7</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="8" checked> 8</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="9" checked> 9</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="10" checked> 10</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="11" checked> 11</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="12" checked> 12</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="13" checked> 13</label>
-                <label><input type="checkbox" class="seasons setting-number" value="14" checked> 14</label>,
-                <label><input type="checkbox" class="seasons setting-number" value="15" checked> 15</label>
+                <div class="option-group">
+                    <label><input type="checkbox" id="seasons-all" class="select-all" value="seasons" checked> Select all</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="1" checked> 1</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="2" checked> 2</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="3" checked> 3</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="4" checked> 4</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="5" checked> 5</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="6" checked> 6</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="7" checked> 7</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="8" checked> 8</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="9" checked> 9</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="10" checked> 10</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="11" checked> 11</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="12" checked> 12</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="13" checked> 13</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="14" checked> 14</label>
+                    <label><input type="checkbox" class="seasons setting-number" value="15" checked> 15</label>
+                </div>
                 <span class="help-text">Only episodes from the selected series will appear.</span>
             </p>
             
             <p>
                 Include specials:
-                <label>(<input type="checkbox" id="special-groups-all" class="select-all" value="specialGroups" checked> Select all)</label>
-                <label><input type="checkbox" class="special-groups" value="christmas" checked> Christmas</label>,
-                <label><input type="checkbox" class="special-groups" value="nyd" checked> New Year</label>,
-                <label><input type="checkbox" class="special-groups" value="2008-10" checked> 2008–10 Specials</label>,
-                <label><input type="checkbox" class="special-groups" value="anniversary" checked> 50th Anniversary</label>,
-                <label><input type="checkbox" class="special-groups" value="2022" checked> 2022 Specials</label>,
-                <label><input type="checkbox" class="special-groups" value="2023" checked> 2023 Specials</label>
+                <div class="option-group">
+                    <label><input type="checkbox" id="special-groups-all" class="select-all" value="specialGroups" checked> Select all</label>
+                    <label><input type="checkbox" class="special-groups" value="christmas" checked> Christmas</label>
+                    <label><input type="checkbox" class="special-groups" value="nyd" checked> New Year</label>
+                    <label><input type="checkbox" class="special-groups" value="2008-10" checked> 2008–10 Specials</label>
+                    <label><input type="checkbox" class="special-groups" value="anniversary" checked> 50th Anniversary</label>
+                    <label><input type="checkbox" class="special-groups" value="2022" checked> 2022 Specials</label>
+                    <label><input type="checkbox" class="special-groups" value="2023" checked> 2023 Specials</label>
+                </div>
                 <span class="help-text">Season-linked specials can appear via their season or their special category.</span>
             </p>
             
@@ -757,6 +773,9 @@ var pickerUI = new PickerUI(myPicker, {
         evaluating: "#evaluating",
         favorites: "#favorites"
     },
+    wrapItem: function(item) {
+        return $('<li></li>').append($('<span></span>').append(item));
+    },
     messages: {
         mustSelect: "You must select at least one episode first. If you like them all equally, press Pass.",
         orderedAll: "You have ordered every available episode!",
@@ -775,9 +794,11 @@ var pickerUI = new PickerUI(myPicker, {
         $("#debug-state").val(JSON.stringify(this.picker.state.getState()));
 
         setSelectAll("seasons");
+        setSelectAll("specialGroups");
     }
 });
 
+myPicker.initialize();
 pickerUI.initialize();
 
 function setSelectAll(setting) {
