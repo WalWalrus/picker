@@ -5,228 +5,438 @@
 <title>Picker</title>
 <style>
 body {
-    background:#FFF;
-    color:#000;
-    font-family:verdana, sans-serif;
-    font-size:10pt;
-    margin:0;
-    padding:10px;
+    background: #fff;
+    color: #000;
+    font-family: Verdana, sans-serif;
+    font-size: 10pt;
+    line-height: 1.4;
+    margin: 0;
+    padding: 10px;
+}
+
+body.dark {
+    background: #121212;
+    color: #e8e8e8;
 }
 
 a:link, a:visited {
-    color:#008;
-    font-weight:bold;
-    text-decoration:none;
+    color: #008;
+    font-weight: bold;
+    text-decoration: none;
 }
 
-a:active, a:hover {
-    color:#ACF;
+body.dark a:link,
+body.dark a:visited {
+    color: #8db4ff;
+}
+
+a:hover, a:active {
+    color: #acf;
 }
 
 .info {
-    font-weight:bold;
+    font-weight: bold;
 }
 
 button {
-    font-family:inherit;
-    cursor:pointer;
-    border:0;
-    border-radius:3px;
-    padding:0.3em 0.5em;
-    background:#CCC;
-    color:#000;
+    font-family: inherit;
+    cursor: pointer;
+    border: 0;
+    border-radius: 3px;
+    padding: 0.3em 0.5em;
+    background: #ccc;
+    color: #000;
 }
 
-button:hover {
-    background:#DDD;
+button:hover,
+button:focus {
+    background: #ddd;
+    outline: none;
+}
+
+body.dark button {
+    background: #333;
+    color: #eee;
+}
+
+body.dark button:hover,
+body.dark button:focus {
+    background: #444;
 }
 
 button.disabled {
-    background:#DDD;
-    color:#888;
-    cursor:not-allowed;
+    background: #ddd;
+    color: #888;
+    cursor: not-allowed;
 }
 
-button.disabled:hover {
-    background:#DDD;
+body.dark button.disabled {
+    background: #2a2a2a;
+    color: #666;
+}
+
+#darkmode {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 #container {
-    position:relative;
-    margin-left:-10px;
-    margin-right:-10px;
-    padding:10px;
-    overflow:hidden;
+    position: relative;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 10px;
+    overflow: hidden;
 }
 
-@media (min-width:1024px) {
-    /* Put the found favorites beside the picking div when the window is sufficiently large */
+#picking {
+    text-align: center;
+    position: relative;
+}
+
+.tabs {
+    margin: 20px 0;
+    padding: 0 10px;
+    list-style: none;
+    border-bottom: 1px solid #aaa;
+}
+
+.tabs li {
+    margin: 0 -1px -1px 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: bottom;
+    border: 1px solid #aaa;
+    background: #eee;
+}
+
+body.dark .tabs li {
+    background: #222;
+    border-color: #555;
+}
+
+.tabs li:first-child {
+    border-top-left-radius: 5px;
+}
+
+.tabs li:last-child {
+    border-top-right-radius: 5px;
+}
+
+.tabs li.active {
+    background: #fff;
+    border-bottom-color: #fff;
+}
+
+body.dark .tabs li.active {
+    background: #121212;
+    border-bottom-color: #121212;
+}
+
+.tabs a {
+    display: block;
+    padding: 5px 10px;
+    font-size: 1.1em;
+    color: inherit;
+}
+
+.tabs li.active a {
+    font-size: 1.2em;
+    padding: 10px 20px 5px;
+}
+
+@media (min-width: 1024px) {
     #picking {
-        float:left;
-        width:636px;
+        float: left;
+        width: 636px;
     }
 
     #secondary {
-        margin-left:646px;
+        margin-left: 646px;
     }
 }
 
-@media (min-width:1300px) {
-    /* Once we get to the point where 636px is less than half of the width of the screen, make the picking div just take up half */
+@media (min-width: 1300px) {
     #picking {
-        width:50%;
+        width: 50%;
     }
 
     #secondary {
-        margin-left:51%;
+        margin-left: 51%;
     }
 }
 
 #pick {
-    background:#58F;
-    color:#FFF;
-    font-size:larger;
-    font-weight:bold;
-    width:6em;
-    border-radius:5px;
-    margin-right:10px;
-}
-
-#pick.disabled {
-    background:#ACF;
+    background: #58f;
+    color: #fff;
+    font-size: larger;
+    font-weight: bold;
+    width: 6em;
+    border-radius: 5px;
+    margin-right: 10px;
 }
 
 #pick:hover {
-    background:#ACF;
+    background: #acf;
 }
 
 .item-list {
-    padding:0;
-    list-style-type:none;
-    line-height:100px;
+    padding: 0;
+    list-style: none;
+    line-height: 100px;
+    text-align: center;
 }
 
 .item-list li {
-    margin:0;
-    display:inline-block;
-    height:100px;
-    width:100px;
-    line-height:100px;
-    border:3px solid transparent;
-    text-align:center;
-    position:relative;
-    vertical-align:top;
-    overflow:hidden;
-    border-radius:100%;
-    background:#F7F7F7;
-    color:#000;
-}
-
-.item-list li img {
-    max-height:100%;
-    max-width:100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
+    margin: 0;
+    display: inline-block;
+    height: 106px;
+    width: 106px;
+    border: 3px solid transparent;
+    text-align: center;
+    position: relative;
+    vertical-align: top;
+    overflow: hidden;
+    border-radius: 100%;
+    background: transparent;
+    color: #000;
 }
 
 .item-list li span {
-    display:inline-block;
-    vertical-align:middle;
-    line-height:1.2;
+    display: block;
+    width: 100px;
+    height: 100px;
+    padding: 3px;
+    background: #eee;
+    border-radius: 100%;
 }
 
-@media (max-width:636px) {
-    .item-list {
-        line-height:75px;
-    }
-
-    .item-list li {
-        line-height:75px;
-        height:75px;
-        width:75px;
-    }
+body.dark .item-list li span {
+    background: #2a2a2a;
 }
 
-@media (max-width:423px) {
-    .item-list {
-        line-height:50px;
-    }
-
-    .item-list li {
-        line-height:50px;
-        height:50px;
-        width:50px;
-    }
+.item-list li img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 100%;
 }
 
 #evaluating li {
-    cursor:pointer;
+    cursor: pointer;
 }
 
 #favorites li {
-    cursor:move;
+    cursor: move;
 }
 
-.item-list li:hover {
-    background:#CDF;
+.item-list li:hover span {
+    background: #cdf;
 }
 
-.item-list.sorting li:hover {
-    background:#F7F7F7;
+body.dark .item-list li:hover span {
+    background: #355070;
 }
 
-#evaluating li.selected {
-    border:3px solid #7AC;
+.item-list.sorting li:hover span {
+    background: #eee;
 }
 
-#evaluating, #buttons {
-    text-align:center;
-    margin:auto;
+body.dark .item-list.sorting li:hover span {
+    background: #2a2a2a;
+}
+
+#evaluating li.selected span {
+    padding: 0;
+    border: 3px solid #7ac;
+}
+
+#evaluating,
+#buttons {
+    text-align: center;
+    margin: auto;
 }
 
 #evaluating li.notice {
-    width:auto;
-    height:auto;
-    max-width:260px;
-    margin:auto;
-    background:#F7F7F7;
-    border-radius:10px;
-    padding:30px 30px;
-    color:#000;
-    text-align:center;
-    line-height:1.4;
-    cursor:auto;
-    font-size:10pt;
+    width: auto;
+    height: auto;
+    max-width: 260px;
+    margin: auto;
+    background: #eee;
+    border-radius: 10px;
+    padding: 30px;
+    color: #000;
+    text-align: center;
+    line-height: 1.4;
+    cursor: auto;
+}
+
+body.dark #evaluating li.notice {
+    background: #2a2a2a;
+    color: #eee;
 }
 
 #buttons {
-    margin-top:30px;
-    position:relative;
-    z-index:3;
+    margin-top: 30px;
+    position: relative;
+    z-index: 3;
+}
+
+.picker-info {
+    text-align: center;
+    font-size: smaller;
+}
+
+#progress-bar {
+    display: block;
+    margin: auto;
+    width: 150px;
+    height: 15px;
+    margin-top: 5px;
+    background: #cdf;
+}
+
+body.dark #progress-bar {
+    background: #2d3c50;
+}
+
+#progress-bar span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: #58f;
+}
+
+.help-text {
+    display: block;
+    font-size: smaller;
+}
+
+#debug-toggle {
+    margin-top: 2em;
+    font-size: smaller;
+    text-align: right;
+}
+
+#debug-state {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 656px) {
+    .item-list {
+        line-height: 75px;
+    }
+
+    .item-list li {
+        height: 81px;
+        width: 81px;
+    }
+
+    .item-list li span {
+        height: 75px;
+        width: 75px;
+        padding: 3px;
+    }
+}
+
+@media (max-width: 456px) {
+    .item-list {
+        line-height: 48px;
+    }
+
+    .item-list li {
+        height: 54px;
+        width: 54px;
+    }
+
+    .item-list li span {
+        height: 48px;
+        width: 48px;
+        padding: 3px;
+    }
 }
 </style>
 </head>
 <body>
-<h1>Picker</h1>
+<a href="#" id="darkmode">Dark mode</a>
 
-<p>You can include any content you want here.</p>
+<h1>Favorite Doctor Who Episode Picker</h1>
+
+<p class="info" id="welcome-back" style="display:none;">
+    Welcome back! Your previous state has been loaded.
+    <button type="button" class="reset">Reset</button>
+</p>
+
+<p>
+    Pick your favourite episode or episodes from each batch, then press <strong>Pick</strong>.
+    Over time, your ranking will build under <strong>Found Favourites</strong>.
+</p>
 
 <div id="container">
+    <div id="picking">
+        <h3>Pick your favourites from the episodes shown!</h3>
 
-<div id="picking">
-<ul id="evaluating" class="item-list">
-</ul>
+        <ul id="evaluating" class="item-list"></ul>
 
-<p id="buttons"><button id="pick">Pick</button> <button id="pass">Pass</button> <button id="undo">Undo</button> <button id="redo">Redo</button></p>
-</div>
+        <p id="buttons">
+            <button id="pick">Pick</button>
+            <button id="pass">Pass</button>
+            <button id="undo">Undo</button>
+            <button id="redo">Redo</button>
+        </p>
 
-<div id="secondary">
-<h2>Found favorites</h2>
+        <div class="picker-info">
+            <p>Episodes remaining before next favourite is found: <span id="remaining">-</span></p>
+            <p>Progress towards next favourite:</p>
+            <span id="progress-bar"><span></span></span>
+        </div>
+    </div>
 
-<ol id="favorites" class="item-list">
-</ol>
-</div>
+    <div id="secondary">
+        <ul class="tabs">
+            <li class="active"><a href="#found-favorites">Found Favourites</a></li>
+            <li><a href="#options">Options</a></li>
+        </ul>
+
+        <div id="found-favorites">
+            <ol id="favorites" class="item-list"></ol>
+
+            <p id="debug-toggle">
+                <a href="#debug" class="toggle">Import/export state</a>
+            </p>
+
+            <div id="debug" style="display:none;">
+                <p>Copy the text below to save your progress elsewhere, or paste saved state here to restore it.</p>
+                <textarea id="debug-state" rows="6" cols="40"></textarea>
+                <p><button id="import">Import state</button></p>
+            </div>
+        </div>
+
+        <div id="options" style="display:none;">
+            <p>
+                <label>
+                    Maximum batch size:
+                    <input type="number" id="max-batch-size" class="setting-number" min="2" max="20" step="1">
+                </label>
+                <span class="help-text">Lower values mean easier choices, but more rounds.</span>
+            </p>
+
+            <p>
+                <label>
+                    Minimum batch size:
+                    <input type="number" id="min-batch-size" class="setting-number" min="2" max="20" step="1">
+                </label>
+                <span class="help-text">Use 2 and 2 for strict head-to-head comparisons.</span>
+            </p>
+
+            <p>
+                <button class="reset">Reset picker</button>
+            </p>
+        </div>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="picker.js"></script>
@@ -465,17 +675,44 @@ var items = [
 ];
 
 var myPicker = new picker.Picker({
-    items: items
+    items: items,
+    localStorageKey: "doctor-who-picker-state",
+    defaultSettings: {
+        minBatchSize: 2,
+        maxBatchSize: 2
+    }
 });
 
 var pickerUI = new PickerUI(myPicker, {
     elements: {
+        settings: {
+            maxBatchSize: "#max-batch-size",
+            minBatchSize: "#min-batch-size"
+        },
         pick: "#pick",
         pass: "#pass",
         undo: "#undo",
         redo: "#redo",
+        reset: ".reset",
         evaluating: "#evaluating",
         favorites: "#favorites"
+    },
+    messages: {
+        mustSelect: "You must select at least one episode first. If you like them all equally, press Pass.",
+        orderedAll: "You have ordered every available episode!",
+        noItems: "There are no episodes available with the current settings."
+    },
+    onUpdate: function(updateType) {
+        var total = this.picker.state.items.length;
+        var favorites = this.picker.state.arrays.favorites.length;
+        var eliminated = this.picker.state.arrays.eliminated.length;
+        var remaining = Math.max(0, total - favorites - eliminated - 1);
+        var roundSize = this.picker.state.roundSize || total;
+        var progress = roundSize > 1 ? (1 - (remaining / (roundSize - 1))) * 100 : 100;
+
+        $("#remaining").text(remaining);
+        $("#progress-bar span").css("width", Math.max(0, Math.min(100, progress)) + "%");
+        $("#debug-state").val(JSON.stringify(this.picker.state.getState()));
     }
 });
 
@@ -498,7 +735,66 @@ var sortable = new Sortable(pickerUI.elem.favorites.get(0), {
         pickerUI.update(true);
     }
 });
-/* End sortable favorites */
+
+$(".tabs").each(function() {
+    var $tabs = $(this);
+
+    $tabs.find("a").on("click", function() {
+        var target = $(this).attr("href");
+
+        $tabs.children(".active").removeClass("active");
+        $(this).parent().addClass("active");
+
+        $("#found-favorites, #options").hide();
+        $(target).show();
+
+        return false;
+    });
+
+    $("#options").hide();
+});
+
+$(".toggle").on("click", function() {
+    $($(this).attr("href")).slideToggle();
+    return false;
+});
+
+function setTheme(theme) {
+    if (theme === "dark") {
+        $("body").addClass("dark");
+        $("#darkmode").text("Light mode");
+    } else {
+        $("body").removeClass("dark");
+        $("#darkmode").text("Dark mode");
+    }
+    localStorage.setItem("doctor-who-picker-theme", theme);
+}
+
+$("#darkmode").on("click", function() {
+    var isDark = $("body").hasClass("dark");
+    setTheme(isDark ? "light" : "dark");
+    return false;
+});
+
+setTheme(localStorage.getItem("doctor-who-picker-theme") || "light");
+
+$("#import").on("click", function() {
+    var state;
+
+    try {
+        state = JSON.parse($("#debug-state").val().trim());
+    } catch (e) {
+        $("#debug-state").val("Invalid import state.");
+        return false;
+    }
+
+    if (!myPicker.setState(state)) {
+        $("#debug-state").val("Invalid import state.");
+    }
+
+    pickerUI.update(false, "import");
+    return false;
+});
 </script>
 </body>
 </html>
