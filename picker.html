@@ -200,25 +200,20 @@ body.dark .tabs li.active {
     border-radius: 100%;
     background: transparent;
     color: #000;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
 
 .item-list li span {
     display: block;
-    width: 100px;
-    height: 100px;
-    padding: 3px;
-    background: #eee;
+    width: 100%;
+    height: 100%;
     border-radius: 100%;
     box-sizing: border-box;
     color: inherit;
 }
 
 body.dark .item-list li {
-    color: #fff;
-}
-
-body.dark .item-list li span {
-    background: #2f537d;
     color: #fff;
 }
 
@@ -229,6 +224,7 @@ body.dark .item-list li span {
     object-position: center;
     display: block;
     border-radius: 100%;
+    transition: filter 0.15s ease, transform 0.15s ease;
 }
 
 #evaluating li {
@@ -239,25 +235,27 @@ body.dark .item-list li span {
     cursor: move;
 }
 
-.item-list li:hover span {
-    background: #cdf;
+#evaluating li:hover {
+    border-color: #9fcfff;
+    box-shadow: 0 0 0 3px rgba(159, 207, 255, 0.35);
 }
 
-body.dark .item-list li:hover span {
-    background: #3d689c;
+body.dark #evaluating li:hover {
+    border-color: #7fb7ff;
+    box-shadow: 0 0 0 3px rgba(127, 183, 255, 0.35);
 }
 
-.item-list.sorting li:hover span {
-    background: #eee;
+#evaluating li:hover img {
+    filter: brightness(1.08);
 }
 
-body.dark .item-list.sorting li:hover span {
-    background: #2f537d;
+#evaluating li.selected {
+    border-color: #7ac;
+    box-shadow: 0 0 0 3px rgba(122, 170, 204, 0.45);
 }
 
-#evaluating li.selected span {
-    padding: 0;
-    border: 3px solid #7ac;
+#evaluating li.selected img {
+    filter: brightness(1.12);
 }
 
 #evaluating,
@@ -362,9 +360,8 @@ body.dark #progress-bar {
     }
 
     .item-list li span {
-        height: 75px;
-        width: 75px;
-        padding: 3px;
+        width: 100%;
+        height: 100%;
     }
 }
 
@@ -379,9 +376,8 @@ body.dark #progress-bar {
     }
 
     .item-list li span {
-        height: 48px;
-        width: 48px;
-        padding: 3px;
+        width: 100%;
+        height: 100%;
     }
 }
 </style>
